@@ -58,6 +58,18 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+#Container Docker
+
+Caso tenha o Docker instalado basta seguir estes passos :
+
+#Rode o comando para criar sua imagem Docker 
+
+$ docker build -t nest-blog-api .
+
+#Rode a imagem criada na porta 
+
+$ docker run -p3000:3000 nest-blog-api
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
