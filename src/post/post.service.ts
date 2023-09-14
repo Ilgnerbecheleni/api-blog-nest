@@ -35,19 +35,83 @@ export class PostService {
     }
   }
 
-  findAll() {
-    return `This action returns all post`;
+  async findAll() {
+    try {
+      const posts = await this.prisma.post.findMany();
+      if (posts.length != 0){
+        return posts;
+      }else {
+        return {
+          message: 'sem posts publicados'
+        }
+      }
+    } catch (err) {
+      throw new BadRequestException({
+        status: 'Falha ao buscar posts',
+        message: err.message,
+      });
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
-  }
 
-  update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
-  }
+  async  findOne(id: number) {
+    try {
+      const post = await this.prisma.post.findFirst({where: { id }});
+      if (post){
+        return post;
+      }else {
+       throw  new BadRequestException("post não encontrado!");
+      }
+    } catch (err) {
+      throw new BadRequestException({
+        status: 'Falha ao buscar post',
+        message: err.message,
+      })
+    }  
+  
+  
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+
+    async update(id: number, updatePostDto: UpdatePostDto) {
+      try {
+        const {  conteudo } = updatePostDto;
+       
+        const post = await this.prisma.post.update({ where: { id: id }, data: { conteudo} });
+        return post;
+  
+      } catch (err) {
+        throw new BadRequestException({
+          status: 'Falha ao atualizar usuario',
+          message: err.message,
+        })
+      }
+    }
+    async remove(id: number) {
+      try {
+        const user = await this.findOne(id);
+    
+        if (user) {
+          await this.prisma.post.delete({
+            where: {
+              id: id,
+            },
+          });
+    
+          return {
+            message: `Post com ID ${id} deletado com sucesso!`,
+          };
+        } else {
+          return {
+            message: `Post com ID ${id} não encontrado.`,
+          };
+        }
+      } catch (err) {
+        throw new BadRequestException({
+          status: 'Falha ao deletar Post',
+          message: err.message,
+        },)
+    }
+  
   }
 }

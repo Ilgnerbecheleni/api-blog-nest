@@ -5,7 +5,7 @@ import { UserModule } from 'src/user/user.module';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
 @Module({
-  imports:[UserModule,PrismaModule],
+  imports: [UserModule, PrismaModule],
   controllers: [PostController],
   providers: [PostService],
 })

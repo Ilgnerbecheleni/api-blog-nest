@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { IdToNumberPipe } from 'src/Pipes/id-to-number/id-to-number.pipe';
 
 @Controller('posts')
 export class PostController {
@@ -18,12 +28,15 @@ export class PostController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.postService.findOne(+id);
+  findOne(@Param('id', IdToNumberPipe) id: number) {
+    return this.postService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
+  @Put(':id')
+  update(
+    @Param('id', IdToNumberPipe) id: number,
+    @Body() updatePostDto: UpdatePostDto,
+  ) {
     return this.postService.update(+id, updatePostDto);
   }
 
