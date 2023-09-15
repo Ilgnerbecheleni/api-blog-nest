@@ -28,7 +28,7 @@ Api simples de um Blog seguindo os endpoints :
 POST /users: Crie um novo usuário, recebendo nome, email, data de nascimento e biografia. Retorne os dados completos do usuário criado.
 
 # Users
-
+```bash
 GET /users: Liste todos os usuários cadastrados.
 
 GET /users/:id: Obtenha os detalhes de um usuário específico.
@@ -36,9 +36,9 @@ GET /users/:id: Obtenha os detalhes de um usuário específico.
 PUT /users/:id: Atualize os dados de um usuário específico.
 
 DELETE /users/:id: Exclua um usuário específico.
-
+```
 # Posts
-
+```bash
 POST /posts: Crie um novo post, recebendo o ID do usuário e o conteúdo do post. Retorne os dados completos do post criado.
 
 GET /posts: Liste todos os posts cadastrados.
@@ -48,7 +48,7 @@ GET /posts/:id: Obtenha os detalhes de um post específico.
 PUT /posts/:id: Atualize o conteúdo de um post específico.
 
 DELETE /posts/:id: Exclua um post específico.
-
+```
 
 ## Instalação
 
