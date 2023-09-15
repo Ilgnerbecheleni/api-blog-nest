@@ -63,13 +63,14 @@ $ npm run test:cov
 Caso tenha o Docker instalado basta seguir estes passos :
 
 #Rode o comando para criar sua imagem Docker 
-
+```bash
 $ docker build -t nest-blog-api .
+```
 
 # Rode a imagem criada na porta 
-
+```bash
 $ docker run -p3000:3000 nest-blog-api
-
+```
 
 
 Nest is [MIT licensed](LICENSE).
