@@ -23,6 +23,8 @@ export class UserService {
           email: true,
           dataNascimento: true,
           biografia: true,
+          updated_At:true,
+          created_At:true,
         },
       });
       return user;

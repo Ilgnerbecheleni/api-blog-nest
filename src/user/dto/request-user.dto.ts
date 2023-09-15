@@ -1,7 +1,11 @@
-/* eslint-disable prettier/prettier */
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateUserDto } from './create-user.dto';
 
-export class requestUserDTO extends PartialType(CreateUserDto) {
-  readonly id: number; 
+
+export class requestUserDTO  {
+  id:number;
+  nome: string;
+  readonly email: string;
+  readonly dataNascimento: Date;
+  readonly biografia: string | null;
+  readonly created_At: Date;
+  readonly updated_At: Date;
 }
